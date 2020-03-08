@@ -9,6 +9,7 @@ module.exports = {
       resolve: `gatsby-plugin-sass`,
       options: {
         includePaths: ['../../node_modules'],
+        implementation: require('dart-sass'),
       },
     },
     `gatsby-plugin-react-helmet`,

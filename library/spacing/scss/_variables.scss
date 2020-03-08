@@ -1,0 +1,17 @@
+$base-spacing: 1rem;
+
+$spacing-map: () !default;
+$spacing-map: map-merge(
+  (
+    '3xsmall': $base-spacing * 0.25,
+    '2xsmall': $base-spacing * 0.5,
+    'xsmall': $base-spacing * 0.75,
+    'small': $base-spacing * 0.875,
+    'base': $base-spacing,
+    'large': $base-spacing * 1.25,
+    'xlarge': $base-spacing * 1.5,
+    '2xlarge': $base-spacing * 2,
+    '3xlarge': $base-spacing * 3,
+  ),
+  $spacing-map
+);

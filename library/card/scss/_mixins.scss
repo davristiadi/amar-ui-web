@@ -1,0 +1,48 @@
+@use '@tunaiku-ui/elevation/scss' as elevation;
+@use './variables' as var;
+
+@mixin create-all-classes() {
+  .Card {
+    @include _apply-core-styles();
+    @include _append-part-classes();
+    @include _append-variant-classes();
+  }
+}
+
+@mixin _apply-core-styles() {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var.$base-fg-color;
+  background-color: var.$base-bg-color;
+  border-style: var.$base-border-style;
+  border-color: var.$base-border-color;
+  border-width: var.$base-border-width;
+}
+
+@mixin _append-card-part-classes() {
+  &-block {
+    padding: var.$base-spacing;
+  }
+
+  &-title,
+  &-body,
+  &-footer {
+    padding: var.$base-spacing;
+  }
+}
+
+/// Appends classes that generates different variants of a card.
+///
+@mixin _append-variant-classes() {
+  @include _append-elevated-class();
+}
+
+@mixin _append-elevated-class() {
+  &--elevated {
+    @include elevation.append-elevation-styles(
+      $depth-level: var.$base-elevation-level,
+      $opacity: var.$base-elevation-opacity
+    );
+  }
+}

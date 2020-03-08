@@ -1,0 +1,15 @@
+@use '@tunaiku-ui/spacing/scss' as spacing;
+@use '@tunaiku-ui/shape/scss' as shape;
+@use '@tunaiku-ui/color/scss' as color;
+
+$base-spacing: spacing.get-spacing('base') !default;
+
+$base-bg-color: color.get-theme('white') !default;
+$base-fg-color: color.get-contrast($base-bg-color) !default;
+
+$base-border-style: solid !default;
+$base-border-color: color.get-theme('light') !default;
+$base-border-radius: shape.get-border-radius('xlarge') !default;
+
+$base-elevation-level: 1 !default;
+$base-elevation-opacity: 0.1 !default;

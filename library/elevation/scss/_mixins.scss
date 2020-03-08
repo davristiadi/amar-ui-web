@@ -1,0 +1,86 @@
+@use 'sass:list';
+@use './variables' as var;
+
+//
+// With Sass Modules
+//
+@mixin create-all-classes() {
+  .Elevation {
+    @include _append-depth-value-classes();
+  }
+}
+
+@mixin _append-depth-value-classes() {
+  @for $index from 1 through var.$base-max-level {
+    &--#{$index} {
+      @include append-elevation-styles($depth-level: $index);
+    }
+  }
+}
+
+@mixin append-elevation-styles(
+  $depth-level: var.$base-depth-level,
+  $color: var.$base-shadow-color,
+  $opacity: var.$base-shadow-opacity,
+  $offset-x: var.$base-shadow-offset-x,
+  $offset-y: var.$base-shadow-offset-y,
+  $blur: var.$base-shadow-blur,
+  $spread: var.$base-shadow-spread
+) {
+  $shadow-length-props: $offset-x, $offset-y, $blur, $spread;
+  $shadow-color-props: rgba($color, $opacity);
+
+  // Update each elevation values (offset-x, y, spread and blur) with $elevation-level value.
+  $computed-shadow-length-props: () !default;
+  @each $prop in $shadow-props {
+    $prop: $prop * $depth-level;
+    $computed-shadow-length-props: list.append($computed-shadow-length-props, $prop);
+  }
+
+  // Apply box-shadow styles.
+  box-shadow: $computed-shadow-length-props $shadow-color-props;
+}
+
+/*
+// Without Sass Modules
+//
+// @mixin tnk-create-elevation-classes() {
+//   @for $i from 1 through $tnk-elevation-max-level {
+//     $elevation-level: $i;
+
+//     .Elevation-#{$i} {
+//       @include tnk-create-elevation($elevation-level);
+//     }
+//   }
+// }
+
+// @mixin tnk-create-elevation(
+//   $level: $tnk-elevation-level,
+//   $opacity: $tnk-elevation-box-shadow-color-opacity,
+//   $color: $tnk-elevation-box-shadow-color-value
+// ) {
+//   $elevation-color: $color;
+//   $elevation-level: $level;
+//   $elevation-opacity: $opacity;
+
+//   $elevation-offset-x: $tnk-elevation-box-shadow-offset-x;
+//   $elevation-offset-y: $tnk-elevation-box-shadow-offset-y;
+//   $elevation-spread: $tnk-elevation-box-shadow-spread;
+//   $elevation-blur: $tnk-elevation-box-shadow-blur;
+
+//   $elevation-values-list: $elevation-offset-x $elevation-offset-y $elevation-blur $elevation-spread;
+
+//   // Update each elevation values (offset-x, y, spread and blur) with $elevation-level value.
+//   $updated-elevation-values: () !default;
+//   @each $var in $elevation-values-list {
+//     $var: $var * $elevation-level;
+//     $updated-elevation-values: append($updated-elevation-values, $var);
+//   }
+
+//   $elevation-box-shadow-color: rgba(black, $elevation-opacity);
+//   $elevation-box-shadow: append($updated-elevation-values, $elevation-box-shadow-color) !default;
+
+//   // Generate the correct box-shadow value based on the calculation above
+//   box-shadow: $elevation-box-shadow;
+// }
+*/

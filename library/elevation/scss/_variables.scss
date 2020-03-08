@@ -1,0 +1,15 @@
+@use '@tunaiku-ui/color/scss' as color;
+
+// Determine the maximum amount of elevation class the system will generate on output.
+// Lesser number will generate lesser classes which would decrease final file size, and vice versa.
+// If possible, don't change the value of this variable.
+$base-max-depth-level: 20 !default;
+$base-depth-level: 1 !default;
+
+$base-shadow-offset-x: 0 !default;
+$base-shadow-offset-y: 1px !default;
+$base-shadow-blur: 4px !default;
+$base-shadow-spread: 0 !default;
+
+$base-shadow-color: color.get-theme('black') !default;
+$base-shadow-opacity: 0.3 !default;

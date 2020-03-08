@@ -1,0 +1,14 @@
+@use 'sass:map';
+@use 'sass:string';
+@use 'variables' as var;
+
+/// A getter function for easier spacing value fetching.
+/// @param {String} $value
+///
+@function get-spacing($spacing-value) {
+  @return map.get(var.$spacing-map, $spacing-value);
+}
+
+@function get-spacing-property($type, $direction: false) {
+  @return if($direction, '#{$type}-#{$direction}', string.quote($type));
+}

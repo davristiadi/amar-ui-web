@@ -1,0 +1,24 @@
+$base-border-style: 'solid' !default;
+$base-border-color: var.get-theme('light') !default;
+$base-border-width: 1px !default;
+
+// Change this variable value if you'd like to generate border-width values more than 10.
+// Like many others, this affects the final file size of the stylesheet part of your
+// project. Please change with caution.
+$max-border-widths: 10 !default;
+
+// Sets the default border-radius value across the framework.
+$base-border-radius: 4px !default;
+$border-radius-sizes: () !default;
+$border-radius-sizes: map-merge(
+  (
+    'base': $border-radius,
+    'large': $border-radius * 1.5,
+    'xlarge': $border-radius * 2,
+    '2xlarge': $border-radius * 3,
+    '3xlarge': $border-radius * 4,
+    'rounded': $border-radius-rounded,
+    'circle': $border-radius-circle,
+  ),
+  $border-radius-sizes
+);
